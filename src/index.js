@@ -9,6 +9,7 @@ const minNumber = document.getElementById("min-number");
 const maxNumber = document.getElementById("max-number");
 const inputNumber = document.getElementById("input-number");
 const guessBtn = document.getElementById("guess-btn");
+const newGameBtn = document.getElementById("new-game-btn");
 const message = document.getElementById("message");
 const gameContainer = document.getElementById("game");
 
@@ -40,10 +41,24 @@ guessBtn.addEventListener("click", () => {
         // Disable input field
         inputNumber.setAttribute("readonly", true);
     } else {
+        // Subtract one guess from the remaining guesses
+        guessesLeft -= 1;
         // Add error message
         setMessageAndBorder(`Wrong guess. You have ${guessesLeft} guess(es) left.`, "red");
-    }
+        // Check number of guesses
+        if (guessesLeft === 0) {
+            // Add error message
+            setMessageAndBorder(`You have ${guessesLeft} guesses left. Start over.`, "red");
+            // Disable input field
+            inputNumber.setAttribute("readonly", true);
+            // Hide button
+            guessBtn.classList.add("hidden");
+            // Show button to start over
+            newGameBtn.classList.remove("hidden");
+        } else {
 
+        }
+    }
 })
 
 // Set message and border color
