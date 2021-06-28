@@ -41,48 +41,75 @@ guessBtn.addEventListener("click", () => {
     if (guessedNumber === winningNumber) {
         // Winning case
 
-            // Add winning message
+            // Add winning message & border
             setMessageAndBorder(`The winning number is ${winningNumber}. You win!`, "green");
-            // Add border color
-            inputNumber.style.borderColor = "green";
             // Update scoreboard
-            playerScore += 1;
-            playerScoreBoard.innerText = playerScore;
-            // Disable input field
-            inputNumber.setAttribute("readonly", true);
-            // Hide button
-            guessBtn.classList.add("hidden");
-            // Show button to start over
-            newGameBtn.classList.remove("hidden");
+            updateScoreBoard("win");
+            // Disable input field and start new game
+            disableInput();
     } else {
         // Losing case
 
-            // Subtract one guess from the remaining guesses
-            guessesLeft -= 1;
-            // Add error message
-            setMessageAndBorder(`Wrong guess. You have ${guessesLeft} guess(es) left.`, "red");
-            // Check number of guesses
+            // Game lost
             if (guessesLeft === 0) {
                 // Add error message
-                setMessageAndBorder(`You have ${guessesLeft} guesses left. Start over.`, "red");
+                setMessageAndBorder(`You have ${guessesLeft} guesses left, you lost. The correct number was ${winningNumber}.`, "red");
                 // Update scoreboard
-                computerScore += 1;
-                computerScoreBoard.innerText = computerScore;
-                // Disable input field
-                inputNumber.setAttribute("readonly", true);
-                // Hide button
-                guessBtn.classList.add("hidden");
-                // Show button to start over
-                newGameBtn.classList.remove("hidden");
+                updateScoreBoard();
+                // Disable input field and start new game
+                disableInput();
         } else {
+            // Wrong guess - game continues
 
+                // Subtract one guess from the remaining guesses
+                guessesLeft -= 1;
+                // Add error message
+                setMessageAndBorder(`Wrong guess. You have ${guessesLeft} guess(es) left.`, "red");
+                // Clear input
+                inputNumber.value = "";
         }
     }
 })
+
+// Event listener for new game button
+newGameBtn.addEventListener("click", startNewGame);
 
 // Set message and border color
 function setMessageAndBorder(msg, color) {
     message.innerText = msg;
     message.style.color = color;
     inputNumber.style.borderColor = color;
+}
+
+// Disable input fields when game is won or lost
+function disableInput() {
+    inputNumber.setAttribute("readonly", true);
+    guessBtn.classList.add("hidden");
+    newGameBtn.classList.remove("hidden");
+}
+
+// Scoreboard
+function updateScoreBoard(win) {
+    if (win) {
+        playerScore += 1;
+        playerScoreBoard.innerText = playerScore;
+    } else {
+        computerScore += 1;
+        computerScoreBoard.innerText = computerScore;
+    }
+}
+
+// Start new game
+function startNewGame() {
+    // Clear input
+    inputNumber.value = "";
+    // Reset message
+    message.innerText = "";
+    // Reset border color
+    inputNumber.style.borderColor = "black";
+    // Enable input field
+    inputNumber.removeAttribute("readonly");
+    // Hide new game button and show guess button
+    newGameBtn.classList.add("hidden");
+    guessBtn.classList.remove("hidden");
 }
