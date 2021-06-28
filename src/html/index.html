@@ -6,21 +6,43 @@
 </head>
 
 <body>
-
-<div class="card">
-    <div class="card-body">
-        <h5 class="card-title">Number guesser</h5>
-        <div id="game">
-            <p class="card-text">Guess a number between <span id="min-number"></span> and <span id="max-number"></span>. You have three chances to win!</p>
-            <label for="input-number" class="form-label">
-                <input id="input-number" class="form-control" type="number" placeholder="Enter a number...">
-            </label>
-            <button id="guess-btn" class="btn btn-primary">Guess!</button>
-            <button id="new-game-btn" class="btn btn-primary hidden">Start over!</button>
-            <p id="message"></p>
+<div class="container">
+    <div class="row mb-2">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Number guesser</h5>
+                <div id="game">
+                    <p class="card-text">Guess a number between <span id="min-number"></span> and <span id="max-number"></span>. You have three chances to win!</p>
+                    <label for="input-number" class="form-label">
+                        <input id="input-number" class="form-control" type="number" placeholder="Enter a number...">
+                    </label>
+                    <button id="guess-btn" class="btn btn-primary">Guess!</button>
+                    <button id="new-game-btn" class="btn btn-primary hidden">Start over!</button>
+                    <p id="message"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="card col-4">
+            <div class="card-body">
+                <h5 class="card-title">Scoreboard</h5>
+                <div class="row">
+                    <div class="col">
+                        <p class="card-text">You</p>
+                    </div>
+                    <div class="col">
+                        <p class="card-text">Computer</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+
+
+
+
 
 </body>
 </html>
