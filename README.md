@@ -1,6 +1,6 @@
 ## Description
 
-I developed a number guessing game with HTML, CSS (Bootstrap & Sass) and plan JavaScript.
+I developed a number guessing game with HTML, CSS (Bootstrap & Sass) and plain JavaScript.
 
 This is how it works:
 - When the game starts, a random number between 1 and 10 is generated;
