@@ -50,6 +50,9 @@ guessBtn.addEventListener("click", () => {
     } else {
         // Losing case
 
+            // Wrong number
+            guessesLeft -= 1;
+
             // Game lost
             if (guessesLeft === 0) {
                 // Add error message
@@ -61,8 +64,6 @@ guessBtn.addEventListener("click", () => {
         } else {
             // Wrong guess - game continues
 
-                // Subtract one guess from the remaining guesses
-                guessesLeft -= 1;
                 // Add error message
                 setMessageAndBorder(`Wrong guess. You have ${guessesLeft} guess(es) left.`, "red");
                 // Clear input
@@ -101,7 +102,6 @@ function updateScoreBoard(gameStatus) {
 
 // Start new game
 function startNewGame() {
-    //todo: reload page to generate a new random number
     // Reset guesses left
     guessesLeft = 3;
     // Clear input
@@ -115,11 +115,13 @@ function startNewGame() {
     // Hide new game button and show guess button
     newGameBtn.classList.add("hidden");
     guessBtn.classList.remove("hidden");
+    // Generate a new random number (because page never reloads, hence math fired is only fired once
+    winningNumber = generateRandomNumber(min,max)
 }
 
 // Generate a winning number
 function generateRandomNumber(min, max) {
     // Return to store in variable
-    return Math.floor(Math.random()*(max-min+1)+min);
+    return Math.floor(Math.random()*(max-min+1)+min)
 }
 
